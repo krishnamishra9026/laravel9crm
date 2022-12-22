@@ -16,6 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [\App\Http\Controllers\SiteController::class, 'index'])
     ->name('index');
 
+    Route::get('/linkstorage', function () {
+   echo  $targetFolder = base_path().'/storage/app/public';
+   echo "<br>";
+   echo  $linkFolder = $_SERVER['DOCUMENT_ROOT'].'/storage';
+    symlink($targetFolder, $linkFolder); 
+});
+
 require __DIR__.'/auth.php';
 
 Route::middleware(['auth', 'verified'])->group(function () {

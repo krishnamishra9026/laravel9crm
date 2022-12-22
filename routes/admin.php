@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ReviewController;
+use App\Http\Controllers\Admin\PreviousVersionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +44,10 @@ Route::prefix('admin')->group(static function () {
         // General routes
         Route::get('/', [\App\Http\Controllers\Admin\HomeController::class, 'index'])->name('admin.index');
         Route::get('profile', [\App\Http\Controllers\Admin\HomeController::class, 'profile'])->middleware('password.confirm.admin')->name('admin.profile');
+        Route::resource('products', ProductController::class);
+        Route::resource('categories', CategoryController::class);
+        Route::resource('reviews', ReviewController::class);
+        Route::resource('previous-versions', PreviousVersionController::class);
     });
 });
 
